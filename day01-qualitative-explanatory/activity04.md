@@ -130,9 +130,31 @@ plot(m_bty_gen)
     addition of gender has changed the parameter estimate of bty\_avg
     from 3.88 to 3.75.
 
-9.  $$
-      \begin{aligned}
-    \widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times (1) \\
-    &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg}+ \hat{\beta}_2
-    \end{aligned}
-    $$
+9.  
+
+$$
+  \begin{aligned}
+\widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times (1) \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg}+ \hat{\beta}_2
+\end{aligned}
+$$
+
+10. For two genders received the same beauty avg score, The male
+    professors are likely to receive a higher course evaluation score.
+
+``` r
+m_bty_rank<-lm(score ~ bty_avg+rank, data = evals)
+tidy(m_bty_rank)
+```
+
+    ## # A tibble: 4 × 5
+    ##   term             estimate std.error statistic   p.value
+    ##   <chr>               <dbl>     <dbl>     <dbl>     <dbl>
+    ## 1 (Intercept)        3.98      0.0908     43.9  2.92e-166
+    ## 2 bty_avg            0.0678    0.0165      4.10 4.92e-  5
+    ## 3 ranktenure track  -0.161     0.0740     -2.17 3.03e-  2
+    ## 4 ranktenured       -0.126     0.0627     -2.01 4.45e-  2
+
+11. R appears to handle categorical variables with more than 2 levels by
+    removing one level from the total numer of levels. Here since there
+    are 3 levels, R is using only 2 of them by removing teaching.

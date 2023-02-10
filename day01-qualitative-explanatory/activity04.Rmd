@@ -109,9 +109,21 @@ plot(m_bty_gen)
 
 
 9) 
+
 $$
   \begin{aligned}
 \widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times (1) \\
 &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg}+ \hat{\beta}_2
 \end{aligned}
 $$
+
+
+10) For two genders received the same beauty avg score, The male professors are likely to receive a higher course evaluation score.
+
+
+```{r}
+m_bty_rank<-lm(score ~ bty_avg+rank, data = evals)
+tidy(m_bty_rank)
+```
+
+11) R appears to handle categorical variables with more than 2 levels by removing one level from the total numer of levels. Here since there are 3 levels, R is using only 2 of them by removing teaching. 
