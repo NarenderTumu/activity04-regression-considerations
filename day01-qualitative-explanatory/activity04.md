@@ -68,22 +68,24 @@ evals_ggpairs
 
 ![](activity04_files/figure-gfm/ggpairs-1.png)<!-- -->
 
-4.  bty\_avg has a higher correlation with rest of the beauty variables
+4.  
+
+-   bty\_avg has a higher correlation with rest of the beauty variables
     and positively linear relation with bty\_m1upper
 
-    bty\_f1lower has the highest correlation with bty\_avg and
+-   bty\_f1lower has the highest correlation with bty\_avg and
     bty\_m1upper
 
-    bty\_f1upper has the highest correlation with bty\_avg and
+-   bty\_f1upper has the highest correlation with bty\_avg and
     bty\_m1upper
 
-    bty\_f2upper has positive linear relationship with bty\_avg
+-   bty\_f2upper has positive linear relationship with bty\_avg
 
-    bty\_m1lower has positive linear relationship with bty\_avg
+-   bty\_m1lower has positive linear relationship with bty\_avg
 
-    bty\_m1upper has positive linear relationship with bty\_avg
+-   bty\_m1upper has positive linear relationship with bty\_avg
 
-    bty\_m2upper has positive linear relationship with bty\_avg
+-   bty\_m2upper has positive linear relationship with bty\_avg
 
 5.  I don’t think it makes sense to include all the variables in the
     model, because it would be a complex model with many variables.
@@ -95,7 +97,7 @@ evals_ggpairs
 ## Task 5: Multiple linear regression: one quantitative predictor, one qualitative predictor
 
 ``` r
-m_bty_gen <- lm(score ~ bty_avg + gender, data = evals)
+m_bty_gen <- lm(score ~ bty_avg+gender, data = evals)
 tidy(m_bty_gen)
 ```
 
@@ -107,10 +109,30 @@ tidy(m_bty_gen)
     ## 3 gendermale    0.172     0.0502      3.43 6.52e-  4
 
 ``` r
+# Creating the diagnostic plots using the function plot() from ggfortify package 
 par(mfrow = c(2, 2))
 plot(m_bty_gen)
 ```
 
 ![](activity04_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-7.  
+7.  From the above diagnostic plots we can see that
+
+    -   The linear relationship assumption is met very well as the
+        residual vs fitted plot does not follow any particular patter
+        and spread randomly
+    -   The normality assumption has met satisfactorily as the residuals
+        follow along the line in q-q plot
+    -   The constant variance assumption also met reasonably as the
+        residuals spread is equal along the horizantal line
+
+8.  The bty\_avg looks like a significant predictor of the score. The
+    addition of gender has changed the parameter estimate of bty\_avg
+    from 3.88 to 3.75.
+
+9.  $$
+      \begin{aligned}
+    \widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty_avg} + \hat{\beta}_2 \times (1) \\
+    &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty_avg}+ \hat{\beta}_2
+    \end{aligned}
+    $$
