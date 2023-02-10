@@ -1,0 +1,51 @@
+Activity 4
+================
+
+# Day 1 - Activity 4
+
+## Task 2: Load the necessary packages
+
+``` r
+library(tidyverse)
+library(tidymodels)
+library(GGally)
+```
+
+## Task 3: Load the data
+
+``` r
+evals<-read_tsv("https://www.openintro.org/data/tab-delimited/evals.txt",show_col_types = FALSE)
+```
+
+1.  This is an experimental study for me because the data was collected
+    from students to test the hypothesis whether beauty leads directly
+    to affect the score evaluations. We can answer the question if it
+    phrased as whether or not beauty affects the score evaluations.
+
+``` r
+plot1<-evals%>%ggplot(aes(x=score))+
+  geom_histogram(fill="red",color="black",bins = 30)+
+  labs(title = "Distribution of Score")+
+  theme(plot.title = element_text(hjust = 0.5))
+plot1
+```
+
+![](activity04_files/figure-gfm/Distribution%20of%20Score-1.png)<!-- -->
+
+2.  The distribution of the variable “Score” appears to be Left-skewed.
+    It indicates that the majority of students gave the professors a
+    more than average rating. It is not what I expected; I expected it
+    to be slightly right-skewed.
+
+``` r
+plot2<-evals%>%ggplot(aes(x=gender,y=bty_avg,fill=gender))+
+  geom_boxplot()+
+  labs(title = "Relationship between Gender and Beauty Average",
+       x="Gender of the Professor",
+       y="Beauty average score")+
+  theme(plot.title = element_text(hjust = 0.5))
+
+plot2
+```
+
+![](activity04_files/figure-gfm/Plot2-1.png)<!-- -->
