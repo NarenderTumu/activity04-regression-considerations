@@ -9,6 +9,7 @@ Activity 4
 library(tidyverse)
 library(tidymodels)
 library(GGally)
+library(ggfortify)
 ```
 
 ## Task 3: Load the data
@@ -37,6 +38,11 @@ plot1
     more than average rating. It is not what I expected; I expected it
     to be slightly right-skewed.
 
+3.  I chose the variables gender and bty avg to show their relationship.
+    I chose a box plot to visualize their relationship, and the below
+    visualization shows that female professors have a slightly higher
+    average beauty score than male professors.
+
 ``` r
 plot2<-evals%>%ggplot(aes(x=gender,y=bty_avg,fill=gender))+
   geom_boxplot()+
@@ -49,3 +55,62 @@ plot2
 ```
 
 ![](activity04_files/figure-gfm/Plot2-1.png)<!-- -->
+
+## Task 4: Pairwise relationships
+
+``` r
+evals_bty<-select(evals,c("bty_f1lower","bty_f1upper","bty_f2upper","bty_m1lower","bty_m1upper","bty_m2upper","bty_avg"))
+
+evals_ggpairs<-evals_bty %>% ggpairs()
+
+evals_ggpairs
+```
+
+![](activity04_files/figure-gfm/ggpairs-1.png)<!-- -->
+
+4.  bty\_avg has a higher correlation with rest of the beauty variables
+    and positively linear relation with bty\_m1upper
+
+    bty\_f1lower has the highest correlation with bty\_avg and
+    bty\_m1upper
+
+    bty\_f1upper has the highest correlation with bty\_avg and
+    bty\_m1upper
+
+    bty\_f2upper has positive linear relationship with bty\_avg
+
+    bty\_m1lower has positive linear relationship with bty\_avg
+
+    bty\_m1upper has positive linear relationship with bty\_avg
+
+    bty\_m2upper has positive linear relationship with bty\_avg
+
+5.  I don’t think it makes sense to include all the variables in the
+    model, because it would be a complex model with many variables.
+
+6.  I think including bty\_avg variable in the model will be a good
+    decision since it has a positive linear relationship with all other
+    beauty variables.
+
+## Task 5: Multiple linear regression: one quantitative predictor, one qualitative predictor
+
+``` r
+m_bty_gen <- lm(score ~ bty_avg + gender, data = evals)
+tidy(m_bty_gen)
+```
+
+    ## # A tibble: 3 × 5
+    ##   term        estimate std.error statistic   p.value
+    ##   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
+    ## 1 (Intercept)   3.75      0.0847     44.3  6.23e-168
+    ## 2 bty_avg       0.0742    0.0163      4.56 6.48e-  6
+    ## 3 gendermale    0.172     0.0502      3.43 6.52e-  4
+
+``` r
+par(mfrow = c(2, 2))
+plot(m_bty_gen)
+```
+
+![](activity04_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+7.  

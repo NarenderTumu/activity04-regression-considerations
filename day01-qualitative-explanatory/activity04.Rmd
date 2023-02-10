@@ -15,6 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(tidymodels)
 library(GGally)
+library(ggfortify)
 ```
 
 
@@ -38,6 +39,8 @@ plot1
 2) The distribution of the variable "Score" appears to be Left-skewed. It indicates that the majority of students gave the professors a more than average rating. It is not what I expected; I expected it to be slightly right-skewed.
 
 
+3) I chose the variables gender and bty avg to show their relationship. I chose a box plot to visualize their relationship, and the below visualization shows that female professors have a slightly higher average beauty score than male professors.
+
 ```{r Plot2}
 plot2<-evals%>%ggplot(aes(x=gender,y=bty_avg,fill=gender))+
   geom_boxplot()+
@@ -49,3 +52,48 @@ plot2<-evals%>%ggplot(aes(x=gender,y=bty_avg,fill=gender))+
 plot2
 ```
 
+## Task 4: Pairwise relationships
+
+```{r ggpairs}
+evals_bty<-select(evals,c("bty_f1lower","bty_f1upper","bty_f2upper","bty_m1lower","bty_m1upper","bty_m2upper","bty_avg"))
+
+evals_ggpairs<-evals_bty %>% ggpairs()
+
+evals_ggpairs
+```
+
+4) bty_avg has a higher correlation with rest of the beauty variables and positively linear relation with     bty_m1upper
+
+    bty_f1lower has the highest correlation with bty_avg and bty_m1upper
+    
+    bty_f1upper has the highest correlation with bty_avg and bty_m1upper
+    
+    bty_f2upper has positive linear relationship with bty_avg
+    
+    bty_m1lower has positive linear relationship with bty_avg
+    
+    bty_m1upper has positive linear relationship with bty_avg
+    
+    bty_m2upper has positive linear relationship with bty_avg
+    
+    
+5) I don't think it makes sense to include all the variables in the model, because it would be a complex model with many variables.
+
+6) I think including bty_avg variable in the model will be a good decision since it has a positive linear relationship with all other beauty variables.
+
+
+## Task 5: Multiple linear regression: one quantitative predictor, one qualitative predictor
+
+```{r}
+m_bty_gen <- lm(score ~ bty_avg + gender, data = evals)
+tidy(m_bty_gen)
+```
+
+```{r}
+par(mfrow = c(2, 2))
+plot(m_bty_gen)
+```
+
+
+    
+7) 
