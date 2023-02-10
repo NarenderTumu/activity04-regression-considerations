@@ -132,7 +132,7 @@ plot(m_bty_gen)
 
 9.  $$
       \begin{aligned}
-    \widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty_avg} + \hat{\beta}_2 \times (1) \\
-    &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty_avg}+ \hat{\beta}_2
+    \widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times (1) \\
+    &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg}+ \hat{\beta}_2
     \end{aligned}
     $$
