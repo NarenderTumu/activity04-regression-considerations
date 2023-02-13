@@ -6,10 +6,10 @@ Activity 4
 ## Task 2: Load the necessary packages
 
 ``` r
-library(tidyverse)
-library(tidymodels)
-library(GGally)
-library(ggfortify)
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(tidymodels))
+suppressPackageStartupMessages(library(GGally))
+suppressPackageStartupMessages(library(ggfortify))
 ```
 
 ## Task 3: Load the data
@@ -158,3 +158,45 @@ tidy(m_bty_rank)
 11. R appears to handle categorical variables with more than 2 levels by
     removing one level from the total numer of levels. Here since there
     are 3 levels, R is using only 2 of them by removing teaching.
+
+# Activity 4 - Day 2
+
+## Task 2: bty\_avg \* gender interaction
+
+``` r
+m_int <- lm(score ~ bty_avg * gender, data = evals)
+tidy(m_int)
+```
+
+    ## # A tibble: 4 × 5
+    ##   term               estimate std.error statistic   p.value
+    ##   <chr>                 <dbl>     <dbl>     <dbl>     <dbl>
+    ## 1 (Intercept)          3.95      0.118      33.5  2.92e-125
+    ## 2 bty_avg              0.0306    0.0240      1.28 2.02e-  1
+    ## 3 gendermale          -0.184     0.153      -1.20 2.32e-  1
+    ## 4 bty_avg:gendermale   0.0796    0.0325      2.45 1.46e-  2
+
+1.  Since R recodes the categorical variable into a indicator variable
+    of binary values. Here, the gender variale is recoded as gendermale
+    which takes value ‘0’ for female and ‘1’ for male professors. The
+    interaction of bty\_avg and gender is bty\_avg:gendermale.
+
+2.  1.  For Male professors
+
+$$
+\begin{aligned}
+\widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{gendermale}+ \hat{\beta}_3 \times \texttt{bty\\_avg:gendermale} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times (1)+ \hat{\beta}_3 \times \texttt{bty\\_avg:gendermale} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg}+ \hat{\beta}_2 + \hat{\beta}_3 \times \texttt{bty\\_avg:gendermale}
+\end{aligned}
+$$
+
+2.  For Female Professors
+
+$$
+\begin{aligned}
+\widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{gendermale}+ \hat{\beta}_3 \times \texttt{bty\\_avg:gendermale} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times (0)+ \hat{\beta}_3 \times \texttt{bty\\_avg:gendermale} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg}+ \hat{\beta}_3 \times \texttt{bty\\_avg:gendermale}
+\end{aligned}
+$$

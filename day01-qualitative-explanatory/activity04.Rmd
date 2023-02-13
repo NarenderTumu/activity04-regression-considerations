@@ -12,10 +12,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Task 2: Load the necessary packages
 
 ```{r loading libraries,message=FALSE,warning=FALSE}
-library(tidyverse)
-library(tidymodels)
-library(GGally)
-library(ggfortify)
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(tidymodels))
+suppressPackageStartupMessages(library(GGally))
+suppressPackageStartupMessages(library(ggfortify))
 ```
 
 
@@ -126,4 +126,41 @@ m_bty_rank<-lm(score ~ bty_avg+rank, data = evals)
 tidy(m_bty_rank)
 ```
 
-11) R appears to handle categorical variables with more than 2 levels by removing one level from the total numer of levels. Here since there are 3 levels, R is using only 2 of them by removing teaching. 
+11) R appears to handle categorical variables with more than 2 levels by removing one level from the total numer of levels. Here since there are 3 levels, R is using only 2 of them by removing teaching.
+
+
+# Activity 4 - Day 2
+
+## Task 2: bty_avg * gender interaction
+
+```{r}
+m_int <- lm(score ~ bty_avg * gender, data = evals)
+tidy(m_int)
+```
+
+
+1) Since R recodes the categorical variable into a indicator variable of binary values. Here, the gender variale is recoded as gendermale which takes value '0' for female and '1' for male professors. The interaction of bty_avg and gender is bty_avg:gendermale.
+
+2) a) For Male professors
+
+$$
+\begin{aligned}
+\widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{gendermale}+ \hat{\beta}_3 \times \texttt{bty\\_avg:gendermale} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times (1)+ \hat{\beta}_3 \times \texttt{bty\\_avg:gendermale} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg}+ \hat{\beta}_2 + \hat{\beta}_3 \times \texttt{bty\\_avg:gendermale}
+\end{aligned}
+$$
+
+
+b) For Female Professors
+
+
+$$
+\begin{aligned}
+\widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{gendermale}+ \hat{\beta}_3 \times \texttt{bty\\_avg:gendermale} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times (0)+ \hat{\beta}_3 \times \texttt{bty\\_avg:gendermale} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg}+ \hat{\beta}_3 \times \texttt{bty\\_avg:gendermale}
+\end{aligned}
+$$
+
+
