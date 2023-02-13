@@ -122,11 +122,17 @@ $$
 
 
 ```{r}
+# Model to predict the score with help of bty_avg and rank
+
 m_bty_rank<-lm(score ~ bty_avg+rank, data = evals)
 tidy(m_bty_rank)
 ```
 
-11) R appears to handle categorical variables with more than 2 levels by removing one level from the total numer of levels. Here since there are 3 levels, R is using only 2 of them by removing teaching.
+11) R appears to handle categorical variables with more than 2 levels by removing one level from the total number of levels. Here since there are 3 levels, R is using only 2 of them by removing teaching and recodes the levels by creating a contrast matrix.
+
+* If Rank is tenure track then the ranktenure track is coded as 1 and ranktenured as 0. 
+* If Rank is tenured then the ranktenure track is coded as 0 and ranktenured as 1.
+* If Rank is teaching then both the ranktenure track and ranktenured are coded as 0.
 
 
 # Activity 4 - Day 2
@@ -134,6 +140,8 @@ tidy(m_bty_rank)
 ## Task 2: bty_avg * gender interaction
 
 ```{r}
+# model predicting score with help of bty_avg, gender and their interaction
+
 m_int <- lm(score ~ bty_avg * gender, data = evals)
 tidy(m_int)
 ```
@@ -141,7 +149,7 @@ tidy(m_int)
 
 1) Since R recodes the categorical variable into a indicator variable of binary values. Here, the gender variale is recoded as gendermale which takes value '0' for female and '1' for male professors. The interaction of bty_avg and gender is bty_avg:gendermale.
 
-2) a) For Male professors
+2a) For Male professors
 
 $$
 \begin{aligned}
@@ -152,7 +160,7 @@ $$
 $$
 
 
-b) For Female Professors
+2b) For Female Professors
 
 
 $$
@@ -164,3 +172,76 @@ $$
 $$
 
 
+3) When two professors who received the same beauty rating, the male professors tends to have the higher course evaluation score
+
+
+```{r}
+# checking the model fitof m_int and m_bty_gen
+
+glance(m_int)
+
+glance(m_bty_gen)
+```
+
+4) The interaction model is performing better than the model with jus the variables. I used the R-squared value and p-value to compare the model fit of both the models because the R-squared value tells us variance explained byeach model to predict the evaluation score.
+
+
+## Task 3: bty_avg * rank interaction
+
+```{r}
+m_int_rank <- lm(score ~ bty_avg * rank, data = evals)
+tidy(m_int_rank)
+```
+
+
+In this model since there are more than two levels in the categorical variable rank, r has recoded it to two variables by creating a contrast matrix and the same in the interaction of those two with the bty_avg variable. So, we have two interaction variables. Below here is how the model looks based on their ranks respectively
+
+a) How the model looks irrespective of Rank
+
+$$
+\widehat{\texttt{score}} = \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{ranktenure track}+ \hat{\beta}_3 \times \texttt{ranktenured}+ \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured}
+$$
+
+b) If Rank of the professor is tenure track
+
+$$
+\begin{aligned}
+\widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{ranktenure track}+ \hat{\beta}_3 \times \texttt{ranktenured}+ \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times (1)+ \hat{\beta}_3 \times (0)+ \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 + \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured}
+\end{aligned}
+$$
+
+c) If Rank of the professor is tenured
+
+
+$$
+\begin{aligned}
+\widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{ranktenure track}+ \hat{\beta}_3 \times \texttt{ranktenured}+ \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times (0)+ \hat{\beta}_3 \times (1)+ \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_3 + \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured}
+\end{aligned}
+$$
+
+d) If Rank of the professor is teaching
+
+$$
+\begin{aligned}
+\widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{ranktenure track}+ \hat{\beta}_3 \times \texttt{ranktenured}+ \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times (0)+ \hat{\beta}_3 \times (0)+ \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured}
+\end{aligned}
+$$
+
+
+* For two professors who received the same beauty_avg rating, then the score would be higher in the order of ranking Teaching > tenure track > tenured
+
+
+```{r}
+# Checking the model fit of the models with and without the interaction of bty_avg and rank
+
+glance(m_int_rank)
+glance(m_bty_rank)
+```
+
+* Looks like the The model with the interaction of bty_avg and rank is performing better than the model without interaction based on the r-squared value and p-value
