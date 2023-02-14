@@ -278,9 +278,9 @@ $$
 
 $$
 \begin{aligned}
-\widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{ranktenuretrack}+ \hat{\beta}_3 \times \texttt{ranktenured}+ \hat{\beta}_4 \times \texttt{bty_avg:ranktenuretrack}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured} \\
-&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times (1)+ \hat{\beta}_3 \times (0)+ \hat{\beta}_4 \times \texttt{bty_avg:ranktenuretrack}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured} \\
-&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 + \hat{\beta}_4 \times \texttt{bty_avg:ranktenuretrack}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured}
+\widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{ranktenuretrack}+ \hat{\beta}_3 \times \texttt{ranktenured}+ \hat{\beta}_4 \times \texttt{bty\\_avg:ranktenuretrack}+ \hat{\beta}_5 \times \texttt{bty\\_avg:ranktenured} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times (1)+ \hat{\beta}_3 \times (0)+ \hat{\beta}_4 \times \texttt{bty\\_avg:ranktenuretrack}+ \hat{\beta}_5 \times \texttt{bty\\_avg:ranktenured} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 + \hat{\beta}_4 \times \texttt{bty\\_avg:ranktenuretrack}+ \hat{\beta}_5 \times \texttt{bty\\_avg:ranktenured}
 \end{aligned}
 $$
 
@@ -288,9 +288,9 @@ $$
 
 $$
 \begin{aligned}
-\widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{ranktenure track}+ \hat{\beta}_3 \times \texttt{ranktenured}+ \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured} \\
-&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times (0)+ \hat{\beta}_3 \times (1)+ \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured} \\
-&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_3 + \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured}
+\widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{ranktenure track}+ \hat{\beta}_3 \times \texttt{ranktenured}+ \hat{\beta}_4 \times \texttt{bty\\_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty\\_avg:ranktenured} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times (0)+ \hat{\beta}_3 \times (1)+ \hat{\beta}_4 \times \texttt{bty\\_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty\\_avg:ranktenured} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_3 + \hat{\beta}_4 \times \texttt{bty\\_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty\\_avg:ranktenured}
 \end{aligned}
 $$
 
@@ -298,9 +298,9 @@ $$
 
 $$
 \begin{aligned}
-\widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{ranktenure track}+ \hat{\beta}_3 \times \texttt{ranktenured}+ \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured} \\
-&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times (0)+ \hat{\beta}_3 \times (0)+ \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured} \\
-&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured}
+\widehat{\texttt{score}} &= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{ranktenure track}+ \hat{\beta}_3 \times \texttt{ranktenured}+ \hat{\beta}_4 \times \texttt{bty\\_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty\\_avg:ranktenured} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times (0)+ \hat{\beta}_3 \times (0)+ \hat{\beta}_4 \times \texttt{bty\\_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty\\_avg:ranktenured} \\
+&= \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_4 \times \texttt{bty\\_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty\\_avg:ranktenured}
 \end{aligned}
 $$
 
