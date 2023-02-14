@@ -198,11 +198,15 @@ In this model since there are more than two levels in the categorical variable r
 
 a) How the model looks irrespective of Rank
 
+
+
 $$
-\widehat{\texttt{score}} = \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{ranktenure track}+ \hat{\beta}_3 \times \texttt{ranktenured}+ \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured}
+\widehat{\texttt{score}} = \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{ranktenure track}+ \hat{\beta}_3 \times \texttt{ranktenured} + \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured}
 $$
 
+
 b) If Rank of the professor is tenure track
+
 
 $$
 \begin{aligned}
@@ -224,6 +228,7 @@ $$
 $$
 
 d) If Rank of the professor is teaching
+
 
 $$
 \begin{aligned}
