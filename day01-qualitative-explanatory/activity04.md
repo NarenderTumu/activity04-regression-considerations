@@ -271,7 +271,7 @@ model looks based on their ranks respectively
 1.  How the model looks irrespective of Rank
 
 $$
-\widehat{\texttt{score}} = \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{ranktenure track}+ \hat{\beta}_3 \times \texttt{ranktenured} + \hat{\beta}_4 \times \texttt{bty_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty_avg:ranktenured}
+\widehat{\texttt{score}} = \hat{\beta}_0 + \hat{\beta}_1 \times \texttt{bty\\_avg} + \hat{\beta}_2 \times \texttt{ranktenure track}+ \hat{\beta}_3 \times \texttt{ranktenured} + \hat{\beta}_4 \times \texttt{bty\\_avg:ranktenure track}+ \hat{\beta}_5 \times \texttt{bty\\_avg:ranktenured}
 $$
 
 2.  If Rank of the professor is tenure track
